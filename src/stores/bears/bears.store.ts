@@ -13,9 +13,7 @@ interface BearState {
 
   bears: Bear[];
 
-  computed: {
-    totalBears: number;
-  };
+  totalBears: () => number;
 
   increaseBlackBears: (by: number) => void;
   increasePolarBears: (by: number) => void;
@@ -35,15 +33,13 @@ export const useBearStore = create<BearState>()(
 
       bears: [{ id: 1, name: "Oso #01" }],
 
-      computed: {
-        get totalBears() {
-          return (
-            get().blackBears +
-            get().polarBears +
-            get().pandaBear +
-            get().bears.length
-          );
-        },
+      totalBears: () => {
+        return (
+          get().blackBears +
+          get().polarBears +
+          get().pandaBear +
+          get().bears.length
+        );
       },
 
       increaseBlackBears: (by: number) =>
