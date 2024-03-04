@@ -6,7 +6,6 @@ const storageApi: StateStorage = {
   getItem: async function (name: string): Promise<string | null> {
     try {
       const data = await fetch(`${url}/${name}.json`).then((res) => res.json());
-      console.log(data);
       return JSON.stringify(data);
     } catch (error) {
       throw error;
@@ -17,7 +16,6 @@ const storageApi: StateStorage = {
       method: "PUT",
       body: value,
     }).then((res) => res.json());
-    console.log(data);
     return data;
   },
   removeItem: function (name: string): void | Promise<void> {
